@@ -49,6 +49,8 @@ void fRecur(Pieces& pieces, size_t niveau);
  */
 bool fit(AttachementType figure1, AttachementType figure2);
 
+void resoudrePuzzle(Pieces& pieces);
+
 extern const Pieces PIECES;
 
 #endif /* pieces_h */

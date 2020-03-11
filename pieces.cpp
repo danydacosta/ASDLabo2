@@ -36,6 +36,7 @@ bool fit(AttachementType figure1, AttachementType figure2) {
       case GATEAU_GAUCHE: return figure2 == GATEAU_DROIT;
       case GATEAU_DROIT: return figure2 == GATEAU_GAUCHE;
       case ARROSOIR_INVERSE: return false;
+      case NONE: return false;
    }
 }
 
@@ -59,6 +60,17 @@ ostream& operator<<(ostream& lhs, const Pieces& rhs) {
    return lhs << sortie;
 }
 
+void resoudrePuzzle(Pieces& pieces){
+   for (unsigned i = 0; i < 9; i++) {
+      fRecur(pieces, 8);
+      for (int j = 0; j < 3; j++) {
+         rotate(pieces[8].begin(), pieces[8].begin() + 1,
+                 pieces[8].end());
+         fRecur(pieces, 8);
+      }
+      swap(pieces[i], pieces[8]);
+   }
+}
 /*void rotation(Piece& piece){
    for (AttachementType& cote : piece){
       cote = AttachementType((cote + 1) % 4);
@@ -66,7 +78,7 @@ ostream& operator<<(ostream& lhs, const Pieces& rhs) {
 }*/
 
 void fRecur(Pieces& pieces, size_t niveau) {
-   if (niveau > 1 && niveau < 9) {
+   if (niveau && niveau < 9) {
       for (size_t i = 0; i < niveau; i++) {
          if (niveau % 3 && niveau <= 6) {
             for (unsigned j = 0; j < 4; j++) {
@@ -107,28 +119,7 @@ void fRecur(Pieces& pieces, size_t niveau) {
             }
          }
       }
-   } else if (niveau == 1) {
-      //la dernière pièce doit être compatible 
-      for (unsigned i = 0; i < 4; i++) {
-         if (fit(pieces[niveau - 1][(DROITE + i) % 4], pieces[niveau][GAUCHE]) &&
-                 fit(pieces[niveau - 1][(BAS + i) % 4], pieces[niveau + 2][HAUT])) {
-            //une solution du puzzle
-            if (i)
-               rotate(pieces[niveau - 1].begin(), pieces[niveau - 1].begin() + i,
-                    pieces[niveau - 1].end());
-            cout << pieces << endl;
-            break;
-         }
-      }
-   } else {
-      for (unsigned i = 0; i < 9; i++) {
-         fRecur(pieces, niveau - 1);
-         for (int j = 0; j < 3; j++) {
-            rotate(pieces[niveau - 1].begin(), pieces[niveau - 1].begin() + 1,
-                    pieces[niveau - 1].end());
-            fRecur(pieces, niveau - 1);
-         }
-         swap(pieces[i], pieces[niveau - 1]);
-      }
-   }
+   } else if (niveau == 0) {
+      cout << pieces << endl;
+}
 }

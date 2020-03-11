@@ -1,9 +1,6 @@
 #include "pieces.h"
 #include <iostream>
-#include <algorithm>
-#include <vector>
 #include <chrono>
-#include <ctime>
 
 using namespace std;
 using namespace std::chrono;
@@ -13,7 +10,7 @@ using namespace std::chrono;
 int main() {
    Pieces pieces(PIECES);
    high_resolution_clock::time_point t1 = high_resolution_clock::now();
-   fRecur(pieces, 9);
+   resoudrePuzzle(pieces);
    high_resolution_clock::time_point t2 = high_resolution_clock::now();
-   cout << "temps en ms : " << fixed << double(duration_cast<microseconds>(t2 - t1).count());
+   cout << "temps en ms : " << fixed << double(duration_cast<nanoseconds>(t2 - t1).count());
 }
