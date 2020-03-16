@@ -11,14 +11,14 @@ But         : Ce programme permet de trouver toutes les solutions du puzzle
 Remarques   : Il est possible d'exploiter ce programme qui effectue des permutations
               afin de résoudre d'autres puzzles. Seulement, il faudra effectuer les 
               opérations suivantes:
-                1) Dans le fichier d'entête, il faudra adapter les nouvelle figures 
-                   de chaque pièces, et modifier le vecteur constant PIECES afin 
-                   que chaque pièce du puzzle à résoudre soient disponibles. Il 
-                   faudra aussi que ces pièces aient tous des côtés différents.
-                2) Deuxièmement, il faudra modifier les valeurs des constantes dans
-                   scruct parametres afin de connaitres les dimensions du puzzle. Il 
-                   faut que le nombre de pièce du puzzle soit le même que la 
-                   constante NB_PIECES.
+                1) Dans le fichier d'entête, il faudra adapter les nouvelles figures
+                   de chaque pièce, et modifier le vecteur constant PIECES afin
+                   que chaque pièce du puzzle à résoudre soit disponible. Il
+                   faudra aussi que ces pièces aient toutes des côtés différents.
+                2) Deuxièmement, il faudra modifier les valeurs des constantes
+                   dans la scruct parametres afin de connaître les dimensions du
+                   puzzle. Il faut que le nombre de pièces du puzzle soit le même
+                   que la constante NB_PIECES.
    
 --------------------------- */
 
@@ -67,7 +67,7 @@ ostream& operator<<(ostream& lhs, const Pieces& rhs);
 void resoudrePuzzleRecur(Pieces& puzzle, unsigned niveau);
 
 /**
- * Compare si deux figure de pièces sont compatibles.
+ * Compare si deux figures de pièces sont compatibles.
  * @param figure1 première figure à tester.
  * @param figure2 deuxième figure à tester.
  * @return la compabilité de deux figures de pièces.
@@ -117,7 +117,7 @@ void resoudrePuzzle(Pieces& puzzle) {
 }
 
 //fonction récursive qui pour chacune des pièces disponibles restantes analyse si une
-//pièce est compatible à l'emplacement ciblé et si oui, permutte la pièce, et 
+//pièce est compatible à l'emplacement ciblé et, si oui, permute la pièce et
 //effectue un appel récursif plus bas. Si aucune pièce est compatible, cela quitte 
 //la fonction.
 void resoudrePuzzleRecur(Pieces& puzzle, unsigned niveau) {
